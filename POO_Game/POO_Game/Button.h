@@ -19,6 +19,7 @@ public:
 	void update() {};
 	void draw() override;
 	bool intersection(int ok);
+	
 	friend class Menu;
 	friend class GameOver;
 };
