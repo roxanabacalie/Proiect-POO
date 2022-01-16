@@ -1,0 +1,27 @@
+﻿  Game.cpp
+  GameObject.cpp
+  Map.cpp
+  Player.cpp
+  TextureManager.cpp
+  Generating Code...
+Game.obj : error LNK2019: unresolved external symbol _SDL_CreateWindow referenced in function "public: void __thiscall Game::init(char const *,int,int,int,int,bool)" (?init@Game@@QAEXPBDHHHH_N@Z)
+Game.obj : error LNK2019: unresolved external symbol _SDL_DestroyWindow referenced in function "public: void __thiscall Game::clean(void)const " (?clean@Game@@QBEXXZ)
+Game.obj : error LNK2019: unresolved external symbol _SDL_PollEvent referenced in function "public: void __thiscall Game::handleEvents(void)" (?handleEvents@Game@@QAEXXZ)
+Game.obj : error LNK2019: unresolved external symbol _SDL_CreateRenderer referenced in function "public: void __thiscall Game::init(char const *,int,int,int,int,bool)" (?init@Game@@QAEXPBDHHHH_N@Z)
+Game.obj : error LNK2019: unresolved external symbol _SDL_SetRenderDrawColor referenced in function "public: void __thiscall Game::init(char const *,int,int,int,int,bool)" (?init@Game@@QAEXPBDHHHH_N@Z)
+Game.obj : error LNK2019: unresolved external symbol _SDL_RenderClear referenced in function "public: void __thiscall Game::render(void)const " (?render@Game@@QBEXXZ)
+Game.obj : error LNK2019: unresolved external symbol _SDL_RenderPresent referenced in function "public: void __thiscall Game::render(void)const " (?render@Game@@QBEXXZ)
+Game.obj : error LNK2019: unresolved external symbol _SDL_DestroyRenderer referenced in function "public: void __thiscall Game::clean(void)const " (?clean@Game@@QBEXXZ)
+Game.obj : error LNK2019: unresolved external symbol _SDL_Init referenced in function "public: void __thiscall Game::init(char const *,int,int,int,int,bool)" (?init@Game@@QAEXPBDHHHH_N@Z)
+GameObject.obj : error LNK2019: unresolved external symbol _SDL_RenderCopy referenced in function "public: void __thiscall GameObject::Render(void)" (?Render@GameObject@@QAEXXZ)
+TextureManager.obj : error LNK2001: unresolved external symbol _SDL_RenderCopy
+Main.obj : error LNK2019: unresolved external symbol _SDL_GetTicks referenced in function _SDL_main
+Main.obj : error LNK2019: unresolved external symbol _SDL_Delay referenced in function _SDL_main
+TextureManager.obj : error LNK2019: unresolved external symbol _SDL_FreeSurface referenced in function "public: static struct SDL_Texture * __cdecl TextureManager::LoadTexture(char const *,struct SDL_Renderer *)" (?LoadTexture@TextureManager@@SAPAUSDL_Texture@@PBDPAUSDL_Renderer@@@Z)
+TextureManager.obj : error LNK2019: unresolved external symbol _SDL_CreateTextureFromSurface referenced in function "public: static struct SDL_Texture * __cdecl TextureManager::LoadTexture(char const *,struct SDL_Renderer *)" (?LoadTexture@TextureManager@@SAPAUSDL_Texture@@PBDPAUSDL_Renderer@@@Z)
+TextureManager.obj : error LNK2019: unresolved external symbol _IMG_Load referenced in function "public: static struct SDL_Texture * __cdecl TextureManager::LoadTexture(char const *,struct SDL_Renderer *)" (?LoadTexture@TextureManager@@SAPAUSDL_Texture@@PBDPAUSDL_Renderer@@@Z)
+MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol _main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+C:\Users\Roxana\source\repos\POO\POO_Proiect\SDL2\lib\x64\SDL2.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\Roxana\source\repos\POO\POO_Proiect\SDL2\lib\x64\SDL2main.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\Roxana\source\repos\POO\POO_Proiect\SDL2_image-2.0.5\lib\x64\SDL2_image.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+C:\Users\Roxana\source\repos\POO\POO_Proiect\POO_Game\Debug\POO_Game.exe : fatal error LNK1120: 16 unresolved externals
