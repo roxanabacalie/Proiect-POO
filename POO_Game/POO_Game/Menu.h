@@ -12,7 +12,7 @@ public:
 	void handleEvents(int &k, bool quit);
 	//void update();
 	void render();
-	void clean();
+	//void clean();
 
 	//bool running() const { return isRunning; }
 

@@ -1,14 +1,15 @@
-
-#include "Game.h"
+#pragma once
 #include <iostream>
+#include "Game.h"
 #include "Map.h"
 #include "Player.h"
 #include "Enemy.h"
 
 Map* map;
 
-Player* player;
-Enemy* enemy1;
+Player* player; //pacman
+//ghosts
+Enemy* enemy1; 
 Enemy* enemy2;
 Enemy* enemy3;
 Enemy* enemy4;
@@ -26,10 +27,13 @@ int ok;
 
 Game::Game() : GameState()
 {
+	std::cout << "Constructor Game\n";
+	level = 0;
 }
 
 Game::~Game()
 {
+	std::cout << "Destructor Game\n";
 	delete player;
 	delete enemy1;
 	delete enemy2;
@@ -37,6 +41,9 @@ Game::~Game()
 	delete enemy4;
 	delete enemy5;
 	delete enemy6;
+	//6 ghosts at level 1
+	//3 more ghosts at level 2
+	//5 more ghosts at level 3
 	if (level == 2)
 	{
 		delete enemy7;
@@ -44,6 +51,8 @@ Game::~Game()
 	}
 	if (level == 3)
 	{
+		delete enemy7;
+		delete enemy8;
 		delete enemy9;
 		delete enemy10;
 		delete enemy11; 
@@ -57,6 +66,7 @@ Game::~Game()
 //initializam playerul si fantomele
 void Game::initObjects()
 {
+	std::cout << "Initialize player, enemies, map\n";
 	player = new Player("assets/Walk_9.png", renderer);
 	enemy1 = new Enemy("assets/redghost.png", renderer);
 	enemy2 = new Enemy("assets/blueghost.png", renderer);
@@ -70,6 +80,13 @@ void Game::initObjects()
 	enemy4->init(4);
 	enemy5->init(5);
 	enemy6->init(6);
+	player->init();
+
+	//6 ghosts at level 1
+	//3 more ghosts at level 2
+	//5 more ghosts at level 3
+	//map is different depending on the level (different maze on each level)
+	
 	if (level == 1)
 	{
 		map = new Map(renderer, 1);
@@ -105,8 +122,6 @@ void Game::initObjects()
 			enemy13->init(13);
 		}
 	}
-	
-	player->init();
 	
 }
 
@@ -145,31 +160,44 @@ void Game::handleEvents(bool &quit)
 	default:
 		break;
 	}
+
+	//we verify collision of enemy with player, if a ghost meets the player, the game quits (isRunning becomes false)
 	if (level == 1)
 	{
-		if (enemy1->CheckCollisionWithPlayer(player) || enemy2->CheckCollisionWithPlayer(player) || enemy3->CheckCollisionWithPlayer(player) || enemy4->CheckCollisionWithPlayer(player) || enemy5->CheckCollisionWithPlayer(player) || enemy6->CheckCollisionWithPlayer(player))
+		if (enemy1->CheckCollisionWithPlayer(player) || enemy2->CheckCollisionWithPlayer(player) || enemy3->CheckCollisionWithPlayer(player) 
+			|| enemy4->CheckCollisionWithPlayer(player) || enemy5->CheckCollisionWithPlayer(player) || enemy6->CheckCollisionWithPlayer(player))
 			isRunning = false;
 	}
 	if (level == 2)
 	{
-		if (enemy1->CheckCollisionWithPlayer(player) || enemy2->CheckCollisionWithPlayer(player) || enemy3->CheckCollisionWithPlayer(player) || enemy4->CheckCollisionWithPlayer(player) || enemy5->CheckCollisionWithPlayer(player) || enemy6->CheckCollisionWithPlayer(player) || enemy7->CheckCollisionWithPlayer(player) || enemy8->CheckCollisionWithPlayer(player))
+		if (enemy1->CheckCollisionWithPlayer(player) || enemy2->CheckCollisionWithPlayer(player) || enemy3->CheckCollisionWithPlayer(player) 
+			|| enemy4->CheckCollisionWithPlayer(player) || enemy5->CheckCollisionWithPlayer(player) || enemy6->CheckCollisionWithPlayer(player) 
+			|| enemy7->CheckCollisionWithPlayer(player) || enemy8->CheckCollisionWithPlayer(player))
 			isRunning = false;
 	}
 	if (level == 3)
 	{
-		if (enemy1->CheckCollisionWithPlayer(player) || enemy2->CheckCollisionWithPlayer(player) || enemy3->CheckCollisionWithPlayer(player) || enemy4->CheckCollisionWithPlayer(player) || enemy5->CheckCollisionWithPlayer(player) || enemy6->CheckCollisionWithPlayer(player) || enemy7->CheckCollisionWithPlayer(player) || enemy8->CheckCollisionWithPlayer(player) || enemy9->CheckCollisionWithPlayer(player) || enemy10->CheckCollisionWithPlayer(player) || enemy11->CheckCollisionWithPlayer(player) ||enemy12->CheckCollisionWithPlayer(player) || enemy13->CheckCollisionWithPlayer(player))
+		if (enemy1->CheckCollisionWithPlayer(player) || enemy2->CheckCollisionWithPlayer(player) || enemy3->CheckCollisionWithPlayer(player) 
+			|| enemy4->CheckCollisionWithPlayer(player) || enemy5->CheckCollisionWithPlayer(player) || enemy6->CheckCollisionWithPlayer(player) 
+			|| enemy7->CheckCollisionWithPlayer(player) || enemy8->CheckCollisionWithPlayer(player) || enemy9->CheckCollisionWithPlayer(player) 
+			|| enemy10->CheckCollisionWithPlayer(player) || enemy11->CheckCollisionWithPlayer(player) ||enemy12->CheckCollisionWithPlayer(player) 
+			|| enemy13->CheckCollisionWithPlayer(player))
 			isRunning = false;
 	}
-	/*if (GetNrDots() > 50)
-		std::cout << GetNrDots()<<' ';*/
-	//std::cout << "Nr max puncte: " << map->nrMaxDots;
-	if (GetNrDots() == map->nrMaxDots)
+
+	//GetNrDots() returns the number of dots that are eaten
+	//map->nrMaxDots returns the maximum number of dots depending on the level
+	if (GetNrDots() == map->nrMaxDots) //we verify if the two numbers are equal
 	{
+		//if the player has eaten all of the dots, isRunning becomes false and lost becomes false because it means the player has won
 		isRunning = false;
 		lost = false;
 	}
 }
 
+//dir1...dir13 help me with the enemy's movement
+//if the enemy comes from a direction and collides with a wall, it changes direction
+//we use bool because there are two directions: left/right for some enemies, up/down for other enemies
 bool dir1 = 0;
 bool dir2 = 1;
 bool dir3 = 0;
@@ -191,7 +219,7 @@ void Game::update()
 	dir1 = enemy1->move(1, dir1, level);
 	dir2 = enemy2->move(1, dir2, level);
 	dir3 = enemy3->move(1, dir3, level);
-	dir4 = enemy4->move(1, dir4, level);
+	dir4 = enemy4->move(1, dir4, level); //first parameter of function move tells me if the enemy moves up/down (1) or left/right (2)
 	dir5 = enemy5->move(2, dir5, level);
 	dir6 = enemy6->move(2, dir6, level);
 
@@ -249,17 +277,11 @@ int Game::GetNrDots()
 {
 	return map->nrDots;
 }
-void Game::clean()
-{
-	//SDL_DestroyWindow(window);
-	//SDL_DestroyRenderer(renderer);
-	//SDL_QUIT;
-	std::cout << "Game cleaned" << std::endl;
-}
+
 
 void Game::init(SDL_Window* window1, SDL_Renderer* renderer1)
 {
-
+	std::cout<<"Initialize game window and renderer\n";
 	window = window1;
 	renderer = renderer1;
 	isRunning = true;

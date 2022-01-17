@@ -6,9 +6,9 @@
 #include <iostream>
 
 
-Button* PlayAgain;
-Button* Quit;
-Button* YouLost;
+Button* PlayAgain; //buton play again
+Button* Quit; //buton quit
+Button* YouLost; //fundalul YouLost
 
 GameOver::GameOver() : GameState()
 {
@@ -16,6 +16,7 @@ GameOver::GameOver() : GameState()
 
 GameOver::~GameOver()
 {
+	std::cout << "Destructor GameOver\n";
 	delete PlayAgain;
 	delete Quit;
 	delete YouLost;

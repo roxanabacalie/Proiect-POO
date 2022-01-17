@@ -25,7 +25,7 @@ public:
 	
 	void setTex(const char* path);
 	void init() override;
-	void update() override;
+	void update();
 	//void move(int ok);
 	void draw() override;
 	bool intersection(int ok, int level);

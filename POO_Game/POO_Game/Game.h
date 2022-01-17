@@ -2,8 +2,10 @@
 #include <SDL.h>
 #include "GameState.h"
 
-class Game: public GameState
+class Game: public GameState 
 {
+private:
+	int GetNrDots();
 public:
 	Game();
 	~Game();
@@ -12,14 +14,8 @@ public:
 	void handleEvents(bool &quit);
 	void update();
 	void render();
-	void clean();
 	void init(SDL_Window* window1, SDL_Renderer* renderer1);
-	int GetNrDots();
+	
 	bool lost = true;
-	int level=0;
-
-//private:
-	/*bool isRunning;
-	SDL_Window* window;
-	SDL_Renderer* renderer;*/
+	int level;
 };

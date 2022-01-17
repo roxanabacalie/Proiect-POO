@@ -1,4 +1,5 @@
-﻿  Enemy.cpp
-  Game.cpp
+﻿  GameState.cpp
+  Main.cpp
+  Player.cpp
   Generating Code...
   POO_Game.vcxproj -> C:\Users\Roxana\Documents\GitHub\Proiect-POO\POO_Game\x64\Debug\POO_Game.exe

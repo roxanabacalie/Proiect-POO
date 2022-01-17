@@ -15,7 +15,6 @@ private:
 	void setTex(const char* path);
 	void init() override;
 	void draw() override;
-	void update() {};
 public:
 	friend class Menu;
 	friend class GameOver;

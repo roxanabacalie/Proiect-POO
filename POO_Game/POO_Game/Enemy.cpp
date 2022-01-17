@@ -9,6 +9,9 @@ Enemy::Enemy(const char* path, SDL_Renderer* renderer) : MovingComponent(path, r
 	setTex(path);
 }
 
+
+//Every ghost is in a different position
+//in this function we decide where the ghost will be placed in the game depending on the parameter
 void Enemy::init(int ok1)
 {
 	srcRect.x = srcRect.y = 0;
@@ -85,6 +88,8 @@ void Enemy::init(int ok1)
 	}
 }
 
+//the enemy moves up/down or left/right depending on the ok parameter
+//in this function we verify if the enemy collides with the walls
 bool Enemy::move(int ok, bool dir, int level)
 {
 	switch (ok)
@@ -152,6 +157,8 @@ bool Enemy::move(int ok, bool dir, int level)
 	
 }
 
+
+//in this function we verify if the ghost (enemy) meets with the player
 bool Enemy::CheckCollisionWithPlayer(Player *player)
 {
 	//The sides of the rectangles
@@ -195,8 +202,6 @@ bool Enemy::CheckCollisionWithPlayer(Player *player)
 	if (leftPlayer >= rightEnemy)
 	{
 		return false;
-	}
-
-	//If none of the sides from A are outside B
+	} 
 	return true;
 }

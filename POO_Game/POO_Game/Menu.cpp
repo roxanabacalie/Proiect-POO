@@ -135,10 +135,10 @@ void Menu::render()
 	SDL_RenderPresent(renderer);
 }
 
-void Menu::clean()
+/*void Menu::clean()
 {
 	//SDL_DestroyWindow(window);
 	//SDL_DestroyRenderer(renderer);
 	//SDL_QUIT;
 	std::cout << "Menu cleaned" << std::endl;
-}
+}*/

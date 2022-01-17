@@ -40,14 +40,14 @@ int main(int argc, char* args[])
 					SDL_Delay(frameDelay - frameTime);
 				}
 		}
-		menu->clean();
+		//menu->clean();
 		delete menu;
 
 
 		switch (k)
 		{
 		case 4:
-			game->clean();
+			//game->clean();
 			//delete game;
 			quit = true;
 			break;

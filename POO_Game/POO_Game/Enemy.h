@@ -6,7 +6,7 @@
 
 class Enemy : public MovingComponent
 {
-
+private:
 	bool move(int ok, bool dir, int level);
 	void init(int ok);
 	bool CheckCollisionWithPlayer(Player* player);

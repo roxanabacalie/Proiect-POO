@@ -4,7 +4,6 @@
 #include "TextureManager.h"
 
 
-
 Button::Button(const char* path, SDL_Renderer* renderer) : renderer(renderer)
 {
 	setTex(path);
@@ -23,12 +22,6 @@ void Button::init()
 	destRect.w = 500;
 	destRect.h = 100;
 }
-
-/*void Button::update()
-{
-	destRect.x = destRect.y = 32;
-	destRect.w = destRect.h = 25;
-}*/
 
 void Button::draw()
 {
