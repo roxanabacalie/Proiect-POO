@@ -5,21 +5,18 @@
 
 class Button : public Component
 {
-protected:
+
+private:
 	SDL_Texture* texture{};
 	SDL_Renderer* renderer{};
 	SDL_Rect srcRect{}, destRect{};
-
-public:
 	Button() = default;
 	Button(const char* path, SDL_Renderer* renderer);
-
 	void setTex(const char* path);
 	void init() override;
-	void update() {};
 	void draw() override;
-	bool intersection(int ok);
-	
+	void update() {};
+public:
 	friend class Menu;
 	friend class GameOver;
 };
